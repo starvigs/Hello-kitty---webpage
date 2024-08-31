@@ -1,0 +1,120 @@
+<!doctype html>
+<html lang="en"> 
+ <head> 
+  <meta charset="UTF-8"> 
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+  <title>Kawaii Trivias!</title> 
+  <style>
+        body {
+            font-family: 'Comic Sans MS', sans-serif;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+            transition: background-color 1s ease, color 1s ease;
+        }
+        .container {
+            max-width: 600px;
+            margin: 50px auto;
+            background-color: #ffe6f0;
+            border-radius: 15px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            transition: background-color 1s ease, color 1s ease;
+        }
+        h1 {
+            font-size: 2.5em;
+            transition: color 1s ease, text-shadow 1s ease;
+        }
+        p {
+            font-size: 1.2em;
+            transition: color 1s ease;
+        }
+        .hello-kitty {
+            width: 150px;
+            height: auto;
+            margin: 20px 0;
+            transition: filter 1s ease;
+        }
+        .trivia-box {
+            background-color: #ffb3c6;
+            border-radius: 10px;
+            padding: 15px;
+            margin: 20px 0;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            font-size: 1.1em;
+            color: #fff;
+            transition: background-color 1s ease, color 1s ease;
+        }
+        .btn {
+            background-color: #ff6699;
+            color: white;
+            border: none;
+            border-radius: 10px;
+            padding: 10px 20px;
+            font-size: 1.2em;
+            cursor: pointer;
+            text-decoration: none;
+            position: relative;
+            transition: background-color 1s ease, color 1s ease, transform 1s ease, top 1s ease, left 1s ease;
+        }
+        .btn:hover {
+            background-color: #ff99cc;
+        }
+    </style> 
+  <script>
+        const triviaFacts = [
+            "Did you know? Hello Kitty's full name is Kitty White.",
+            "Hello Kitty was created by Yuko Shimizu in 1974!",
+            "Hello Kitty has a twin sister named Mimmy!",
+            "Legend says that Hello Kitty has no mouth because she speaks from the heart.", 
+            "Despite being a cat, Hello Kitty is actually a little girl!", 
+            "Hello Kitty is a product of a pact with the devil... And Hello Kitty also means Hello Demon.",
+            "There is also a case called Hello Kitty...",
+            "Fan Man-yee, held captive by three men and one girl before dying. Her body was decapitated and her skull placed inside of a Hello Kitty mermaid plush.",
+            "......",
+            "Now look behind you. "
+        ];
+
+        const colors = [
+            { background: "#ffd1dc", container: "#ffe6f0", text: "#ff6699", button: "#ff6699", imgFilter: "none", buttonTransform: "none", buttonPosition: { top: "0", left: "0" }, textShadow: "none" },
+            { background: "#ffccd5", container: "#ffb3c6", text: "#ff66b3", button: "#ff6699", imgFilter: "none", buttonTransform: "rotate(5deg)", buttonPosition: { top: "10px", left: "10px" }, textShadow: "2px 2px 5px #ff66b3" },
+            { background: "#ffb3c6", container: "#ff99aa", text: "#ff3377", button: "#ff6699", imgFilter: "grayscale(20%)", buttonTransform: "rotate(-5deg)", buttonPosition: { top: "-10px", left: "10px" }, textShadow: "2px 2px 10px #ff3377" },
+            { background: "#ff99aa", container: "#ff8090", text: "#ff0044", button: "#ff6699", imgFilter: "grayscale(40%)", buttonTransform: "rotate(10deg)", buttonPosition: { top: "20px", left: "-10px" }, textShadow: "2px 2px 15px #ff0044" },
+            { background: "#ff8090", container: "#ff6677", text: "#cc0033", button: "#ff6699", imgFilter: "grayscale(60%)", buttonTransform: "rotate(-10deg)", buttonPosition: { top: "-20px", left: "-10px" }, textShadow: "3px 3px 20px #cc0033" },
+            { background: "#ff6677", container: "#ff4c5e", text: "#990022", button: "#ff6699", imgFilter: "grayscale(80%)", buttonTransform: "rotate(15deg)", buttonPosition: { top: "30px", left: "15px" }, textShadow: "3px 3px 25px #990022" },
+            { background: "#ff4c5e", container: "#ff3344", text: "#660011", button: "#ff6699", imgFilter: "grayscale(100%)", buttonTransform: "rotate(-15deg)", buttonPosition: { top: "-30px", left: "15px" }, textShadow: "4px 4px 30px #660011" },
+            { background: "#ff3344", container: "#ff0011", text: "#440008", button: "#ff6699", imgFilter: "grayscale(100%) invert(20%)", buttonTransform: "rotate(20deg)", buttonPosition: { top: "40px", left: "-15px" }, textShadow: "4px 4px 35px #440008" },
+            { background: "#ff0011", container: "#cc0010", text: "#220004", button: "#ff6699", imgFilter: "grayscale(100%) invert(40%)", buttonTransform: "rotate(-20deg)", buttonPosition: { top: "-40px", left: "-15px" }, textShadow: "5px 5px 40px #220004" },
+            { background: "#cc0010", container: "#99000b", text: "#110002", button: "#ff6699", imgFilter: "grayscale(100%) invert(60%)", buttonTransform: "rotate(25deg)", buttonPosition: { top: "50px", left: "20px" }, textShadow: "5px 5px 45px #110002" }
+        ];
+
+        let currentFactIndex = 0;
+
+        function showNextTrivia() {
+            currentFactIndex = (currentFactIndex + 1) % triviaFacts.length;
+            document.getElementById("trivia").innerText = triviaFacts[currentFactIndex];
+            document.body.style.backgroundColor = colors[currentFactIndex].background;
+            document.querySelector(".container").style.backgroundColor = colors[currentFactIndex].container;
+            document.querySelector("h1").style.color = colors[currentFactIndex].text;
+            document.querySelector("h1").style.textShadow = colors[currentFactIndex].textShadow;
+            document.querySelector(".trivia-box").style.backgroundColor = colors[currentFactIndex].container;
+            document.querySelector(".trivia-box").style.color = colors[currentFactIndex].text;
+            document.querySelector(".btn").style.backgroundColor = colors[currentFactIndex].button;
+            document.querySelector(".btn").style.transform = colors[currentFactIndex].buttonTransform;
+            document.querySelector(".btn").style.top = colors[currentFactIndex].buttonPosition.top;
+            document.querySelector(".btn").style.left = colors[currentFactIndex].buttonPosition.left;
+            document.querySelector(".hello-kitty").style.filter = colors[currentFactIndex].imgFilter;
+        }
+    </script> 
+ </head> 
+ <body> 
+  <div class="container"> 
+   <h1>ʚHello Kitty Triviaɞ!</h1> 
+   <img src="https://example.com/hello-kitty.png" alt="Hello Kitty" class="hello-kitty"> 
+   <p>Discover the cute and unexplainable world of Hello Kitty!</p> 
+   <div class="trivia-box" id="trivia">
+    Did you know? Hello Kitty's full name is Kitty White.
+   </div> <button class="btn" onclick="showNextTrivia()">Next Fact</button> 
+  </div> 
+ 
+</body></html>
